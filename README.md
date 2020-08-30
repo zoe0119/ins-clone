@@ -1,24 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the project to **build an instagram clone in Rails**. The main features includes:
 
-Things you may want to cover:
+- User registration and login
+- User are able to post photos, upload with ActiveStorage
+- User could leave comments for posts
 
-* Ruby version
+### Registration and login
+- User could sign in, sign up, sign out and change the password, username should in the format of email.
+- User including admin user and user.
 
-* System dependencies
+### Post
+- Everyone could view the post, including the post list ( thumbnail, title and author) and the post details (title, author, content, images and comment)
+ - User **could not** create a new post before signing in, and only admin user and the author could edit and destory the post.
+ - Author could post multiple images in post.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Comment
+- Everyone could view the comments of each post, but user have to sign in before leave the comment.
+- User could only delete their own comments, admin user could delete all comments.
