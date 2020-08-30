@@ -1,0 +1,37 @@
+<h1>Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Author</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <% unless post.images.first.nil? %>
+          <td style="padding: 10px;"><%= image_tag(post.images.first.variant(resize: '80x50!')) %></td>
+        <% else %>
+          <td style="padding: 10px;"> <%= image_tag("no-image-available.png", size: "80x50", alt: "No image available") %> </td>
+        <% end %>
+        <td style="padding: 10px;"><%= post.title %></td>
+        <td style="padding: 10px;"><%= post.user.email %></td>
+        <td style="padding: 5px;"><%= link_to 'Show', post %></td>
+        <% if current_user %>
+          <% if current_user.id == post.user_id || current_user.admin == true %>
+            <td style="padding: 5px;"><%= link_to 'Edit', edit_post_path(post) %></td>
+            <td style="padding: 5px;"><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Share Your Post', new_post_path %>

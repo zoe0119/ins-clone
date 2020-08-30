@@ -1,0 +1,19 @@
+<%= form_with(model: [@post, @post.comments.build], local: true) do |form| %>
+  <div class="field">
+    <strong><%= form.label :title %></strong>
+    <%= form.text_field :title %>
+  </div>
+
+  <br/>
+
+  <div class="field">
+    <strong><%= form.label :content %></strong>
+    <%= form.text_area :content %>
+  </div>
+
+  <br/>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

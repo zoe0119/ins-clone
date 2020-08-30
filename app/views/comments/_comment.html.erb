@@ -1,0 +1,13 @@
+<div>
+  <span><%= comment.create_time %> by <%= User.find(comment.user_id).email %></span>
+  
+  <% if current_user %>
+    <% if current_user.email == User.find(comment.user_id).email || current_user.admin == true %>
+      <%= link_to 'Delete', [comment.post, comment], method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  <% end %>
+  
+  <div><Strong>Topic: <%= comment.title %></Strong></div>
+  <article>Content: <%= comment.content %></article>
+  <br /><br />
+</div>

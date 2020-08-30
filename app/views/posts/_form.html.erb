@@ -1,0 +1,48 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <p style="color: red;"><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</p>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <br/>
+
+  <div class="field">
+    <strong><%= form.label :title %></strong>
+    <%= form.text_field :title %>
+  </div>
+
+  <br/>
+
+  <div class="field">
+    <strong><%= form.label :body %></strong>
+    <%= form.text_area :body %>
+  </div>
+
+  <br/>
+
+  <div class="field">
+    <strong><%= form.label :images %></strong>
+    <p>
+      <% (0...post.images.count).each do |img| %>
+        <%= image_tag(@post.thumbnail(img)) %>
+        <%= link_to 'Remove', delete_image_attachment_post_url(@post, @post.images[img]),
+                method: :delete,
+                data: { confirm: 'Are you sure to remove this image?' } %>
+      <% end %>
+    </p>
+    <%= form.file_field :images, multiple: true %>
+  </div>
+
+  <br/>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
