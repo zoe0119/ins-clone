@@ -18,7 +18,10 @@
   <%= "#{@post.create_time} | #{@post.user.email}" %>
 </div>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
+<% if current_user == User.find(@post.user_id) %>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+<% end %>
+
 <%= link_to 'Back', posts_path %>
 
 <hr />
